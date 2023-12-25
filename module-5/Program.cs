@@ -1,24 +1,41 @@
 ﻿using System;
-using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace module5 
+class MainClass
 {
-    internal class Program
+    static int[] GetArrayFromConsole()
     {
-        static void Main(string[] args)
+        var result = new int[5];
+        int temp;
+
+        for (int i = 0; i < result.Length; i++)
         {
-            (string Name, string[] Dishes) User;
-            User.Dishes = new string[5];
-
-            Console.WriteLine("Введите имя пользователя");
-            User.Name = Console.ReadLine();
-
-            for (int i = 0; i < User.Dishes.Length; i++)
-            {
-                Console.WriteLine($"Введите любимое блюдо номер {i+1}");
-                User.Dishes[i] = Console.ReadLine();
-            }
-
+            Console.WriteLine("Введите элемент массива номер {0}", i + 1);
+            result[i] = int.Parse(Console.ReadLine());
         }
+
+        for (int i = 0; i < result.Length; i++)
+        {
+            for (int j = i + 1; j < result.Length; j++)
+            {
+                if (result[i] > result[j])
+                {
+                    temp = result[i];
+                    result[i] = result[j];
+                    result[j] = temp;
+                }
+            }
+        }
+
+        foreach (var item in result)
+        {
+            Console.Write(item + " ");
+        }
+        return result;
+    }
+
+    public static void Main(string[] args)
+    {
+        GetArrayFromConsole();
     }
 }
