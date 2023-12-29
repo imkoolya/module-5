@@ -13,7 +13,12 @@ class MainClass
             Console.WriteLine("Введите элемент массива номер {0}", i + 1);
             result[i] = int.Parse(Console.ReadLine());
         }
+        return result;
 
+    }
+    static int[] SortArray(int[] result)
+    {
+        int temp = 0;
         for (int i = 0; i < result.Length; i++)
         {
             for (int j = i + 1; j < result.Length; j++)
@@ -33,9 +38,9 @@ class MainClass
         }
         return result;
     }
-
+    
     public static void Main(string[] args)
     {
-        GetArrayFromConsole();
+        SortArray(GetArrayFromConsole());
     }
 }
