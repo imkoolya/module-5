@@ -1,46 +1,33 @@
 ﻿using System;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 class MainClass
 {
-    static int[] GetArrayFromConsole()
+    static void Main(string[] args)
     {
-        var result = new int[5];
-        int temp;
+        Console.WriteLine("Напишите что-то");
+        var str = Console.ReadLine();
 
-        for (int i = 0; i < result.Length; i++)
-        {
-            Console.WriteLine("Введите элемент массива номер {0}", i + 1);
-            result[i] = int.Parse(Console.ReadLine());
-        }
-        return result;
+        Console.WriteLine("Укажите глубину эха");
+        var deep = int.Parse(Console.ReadLine());
 
+        Echo(str, deep);
+
+        Console.ReadKey();
     }
-    static int[] SortArray(int[] result)
+    static void Echo(string saidworld, int deep)
     {
-        int temp = 0;
-        for (int i = 0; i < result.Length; i++)
+        var modif = saidworld;
+
+        if (modif.Length > 2)
         {
-            for (int j = i + 1; j < result.Length; j++)
+            modif = modif.Remove(0, 2);
+
+            Console.WriteLine("..." + modif);
+
+            if (deep > 1)
             {
-                if (result[i] > result[j])
-                {
-                    temp = result[i];
-                    result[i] = result[j];
-                    result[j] = temp;
-                }
+                Echo(modif, deep - 1);
             }
         }
-
-        foreach (var item in result)
-        {
-            Console.Write(item + " ");
-        }
-        return result;
-    }
-    
-    public static void Main(string[] args)
-    {
-        SortArray(GetArrayFromConsole());
     }
 }
