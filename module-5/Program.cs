@@ -2,31 +2,25 @@
 
 class MainClass
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        Console.WriteLine("Напишите что-то");
-        var str = Console.ReadLine();
-
-        Console.WriteLine("Укажите глубину эха");
-        var deep = int.Parse(Console.ReadLine());
-
-        Echo(str, deep);
-
-        Console.ReadKey();
+        Console.WriteLine(PowerUp(2, 3));
     }
-    static void Echo(string saidworld, int deep)
+    public static int PowerUp(int N, byte pow)
     {
-        var modif = saidworld;
-
-        if (modif.Length > 2)
+        if (pow == 0)
         {
-            modif = modif.Remove(0, 2);
-
-            Console.WriteLine("..." + modif);
-
-            if (deep > 1)
+            return 1;
+        }
+        else
+        {
+            if (pow == 1)
             {
-                Echo(modif, deep - 1);
+                return N;
+            }
+            else
+            {
+                return N * PowerUp(N, --pow);
             }
         }
     }
